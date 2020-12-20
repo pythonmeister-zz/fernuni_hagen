@@ -104,3 +104,25 @@ boolean bin_weg() {
 > d) Mangelnde Redudanz, da boole´sche Java-Ausdrücke zu Zusicherungen gemacht werden und damit keine unabhängige Spezifikation möglich ist (im Gegensatz zu JML oder Java Bean Validation).
 
 - Substituierbarkeit ist nur dann gegeben, wenn das substituierende Objekt den Vertrag des substituierten einhält. Was bedeutet dies für Vor- und Nachbedingungen?
+
+> Das zu substituierende Objekt darf nicht mehr an Voraussetzungen verlangen und nicht weniger an Leistungen liefern. Die Vorbedinungen der Methoden des Subtyps müssen gleich oder schwächer sein, die Nachbedingungen gleich oder stärker.
+
+- Warum ist der Name JUnit eigentlich falsch?
+  
+> Beim Unit-Testing wird per Definition immer genau eine Unit getestet (die Unit under test). Allerdings wird dies durch JUnit nicht erzwungen. Es sollte eher JRegression heißen.
+
+- Handelt es sich bei JUnit um eine Bibliothek, ein Blackbox- oder ein Whitebox-Framework? Begründen Sie Ihre Antwort?
+
+> Es handelt sich um ein Framework. Dies erkennt man an der Umkehrung der Ausführungskontrolle: die Testfälle werden nicht direkt aufgerufen, sondern das Framework selbst ermittelt die aufzurufenden Klassen und Methoden. Da zusätzlich Vererbung zum Einsatz kommt (`extends TestCase`), handelt es sich um ein Whitebox-Framework.
+
+- Wann spricht man im Zusammenhang von Unit-Tests von einem *falsch negativen Ergebnis*?
+
+> Beide Fehler, sowohl in der Implementierung als auch im Test, passieren den Unit-Test unbemerkt.
+
+- Was versteht der Kurs 01853 unter einem Entwurfsmuster?
+
+> Unter einem Entwurfsmuster (engl. *design pattern*) versteht man eine Vorlage, anhand derer man eine konkrete Lösung für ein Problem implementieren kann. Entwurfsmuster müssen dabei nicht 1:1 umgesetzt werden, sondern erlauben gewisse Freiheitsgrade. Entwurfsmuster enthalten schemenhafte Lösungen für Standardprobleme, die so oder so ähnlich immer wieder auftreten.
+
+- Beim Framework Junit kommen Entwurfsmuster zum Einsatz.
+- Testsuiten bestehen aus Tests und Testsuiten. Welches Entwurfsmuster kommt zur Anwendung?
+> Composite Pattern. 
