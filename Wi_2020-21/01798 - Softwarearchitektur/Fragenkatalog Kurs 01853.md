@@ -157,4 +157,28 @@ public abstract class TestCase {
 }
 ```
 
-> Das Template Method Pattern besteht meist aus einer Methode, die ein Schema für eine Funktionalität bereitstellt, so dass der Ablauf immer gleich ist. In diesem Beispiel hier sorgt `runBare()` dafür, dass `setUp()`, `runTest()` und `tearDown()` in dieser Reihenfolge aufgerufen werden. Dies sind die Hook-Methoden, mit denen in erbendenen Klassen eigene Zusatzfunktionalitäten implementiert werden können (hier das Herstellen der Vorbedingungen für den Test, die Testdurchführung selbst und den Rückbau der Testinfrastruktur). Primitive Methoden sind in der Template Methode nur abstrakt (also ohne Default-Implementierung) vertreten und werden in der erbendenden Klasse implementiert.
+> Das Template Method Pattern besteht meist aus einer Methode, die ein Schema für eine Funktionalität bereitstellt, so dass der Ablauf immer gleich ist. In diesem Beispiel hier sorgt `runBare()` dafür, dass `setUp()`, `runTest()` und `tearDown()` in dieser Reihenfolge aufgerufen werden. Dies sind die Hook-Methoden, mit denen in erbendenen Klassen eigene Zusatzfunktionalitäten implementiert werden können (hier das Herstellen der Vorbedingungen für den Test, die Testdurchführung selbst und den Rückbau der Testinfrastruktur). Primitive Methoden sind in der Template Methode nur abstrakt (also ohne Default-Implementierung) vertreten und werden in der erbendenden Klasse implementiert und werden hier nicht dargestellt.
+
+- Warum ist das Refactoring `Replace inheritance with delegation` hier nicht anwendbar?
+```java
+class A {
+  protected int i = 0;
+  public void f() {}
+  public int g() { return i;}
+}
+
+class B extends A {
+  protected int j = 0;
+  public void f() {}
+  public int g() { return i + j;}
+}
+
+class C {
+  public void f() {
+    A a = new B();
+    a.f();
+    a.g();
+  }
+}
+```
+> 
