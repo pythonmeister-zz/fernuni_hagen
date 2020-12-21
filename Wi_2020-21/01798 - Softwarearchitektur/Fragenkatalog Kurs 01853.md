@@ -132,3 +132,29 @@ boolean bin_weg() {
 - In der Klasse `TestResult` benachrichtigt die Methode `strTest(test)` die sog. Listener. Welches Pattern findet Anwendung?
 > Das Observer Pattern.
 
+- Beschreiben Sie anhand der abgebildeten Methode `runBare()` der Klasse `TestCase` das Template Method Pattern.
+```java
+public abstract class TestCase {
+  ...
+  public void runBare() throws Throwable {
+    Throwable exception = null;
+    setUp();
+    try {
+      runTest();
+    } catch (Throwable running) {
+      exception = running;
+    } finally {
+      try {
+        tearDown();
+      } catch (Throwable tearingDown) {
+        if(exception == null)
+          exception = tearingDown;
+      }
+    }
+    if(exception != null)
+      throw exception;
+  }
+}
+```
+
+> Das Template Method Pattern besteht meist aus einer Methode, die ein Schema für eine Funktionalität bereitstellt, so dass der Ablauf immer gleich ist. In diesem Beispiel hier sorgt `runBare()` dafür, dass `setUp()`, `runTest()` und `tearDown()` in dieser Reihenfolge aufgerufen werden. Dies sind die Hook-Methoden, mit denen in erbendenen Klassen eigene Zusatzfunktionalitäten implementiert werden können (hier das Herstellen der Vorbedingungen für den Test, die Testdurchführung selbst und den Rückbau der Testinfrastruktur). Primitive Methoden sind in der Template Methode nur abstrakt (also ohne Default-Implementierung) vertreten und werden in der erbendenden Klasse implementiert.
