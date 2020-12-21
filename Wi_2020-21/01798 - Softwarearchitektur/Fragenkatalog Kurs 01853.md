@@ -91,7 +91,7 @@ boolean bin_weg() {
 }
 ```
 
-> Wenn die Überprüfung eingeschaltet ist (`java -ea ...`), kommt es zu Seiteneffekten. Die Methoden `bin_weg()` und `bin_da()` rufen sich gegenseitig auf, so dass es nach einer Zeit zu einem Stapelüberlauf kommt.
+> Wenn die Überprüfung eingeschaltet ist (`java -ea ...`), kommt es zu Seiteneffekten. Die Methoden `bin_weg()` und `bin_da()` rufen sich gegenseitig auf, ohne das `return` je zu erreichen, so dass es nach einer Zeit zu einem Stapelüberlauf kommt.
 
 - Welche Unzulänglichkeiten gibt es bei Assertions mittels Javas `assert` zu beachten?
 
@@ -123,6 +123,12 @@ boolean bin_weg() {
 
 > Unter einem Entwurfsmuster (engl. *design pattern*) versteht man eine Vorlage, anhand derer man eine konkrete Lösung für ein Problem implementieren kann. Entwurfsmuster müssen dabei nicht 1:1 umgesetzt werden, sondern erlauben gewisse Freiheitsgrade. Entwurfsmuster enthalten schemenhafte Lösungen für Standardprobleme, die so oder so ähnlich immer wieder auftreten.
 
-- Beim Framework Junit kommen Entwurfsmuster zum Einsatz.
-- Testsuiten bestehen aus Tests und Testsuiten. Welches Entwurfsmuster kommt zur Anwendung?
+- Beim Framework Junit kommen Entwurfsmuster zum Einsatz. Testsuiten bestehen aus Tests und Testsuiten. Welches Entwurfsmuster kommt zur Anwendung?
 > Composite Pattern. 
+
+- Man muss dem Framework mitteilen, welche Methoden es sind, die die Testfälle implementieren. Jeder Testfall wird in einer eigenen Klasse definiert, die eigentliche Testmethode heißt immer gleich, zum Beispiel `void test()`. Welches Pattern würde dann angewendet?
+> Das Strategy Pattern.
+
+- In der Klasse `TestResult` benachrichtigt die Methode `strTest(test)` die sog. Listener. Welches Pattern findet Anwendung?
+> Das Observer Pattern.
+
