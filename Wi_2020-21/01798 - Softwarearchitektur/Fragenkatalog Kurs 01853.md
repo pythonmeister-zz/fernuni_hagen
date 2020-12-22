@@ -300,3 +300,42 @@ class Norweigian_Blue extends Bird {
   double getSpeed() { return (_isNailed) ? 0 : getBaseSpeed(_voltage); }
 }
 ```
+- Führen Sie beim folgenden Codebeispiel das Refactoring `Introduce NULL object` durch.
+```java
+Betreuering betreuerin = kurs.betreuerin;
+if(betreuerin == null)
+  antwort = "leider keine da, die eine Antwort wüßte";
+else
+  antwort = betreuerin.getAntwort();
+```
+> Ergebnis:
+```java
+class NullBetreuerin {
+  String getAntwort() {
+    return "leider keine da, die eine Antwort wüßte";
+  }
+}
+
+...
+
+Betreuering betreuerin = kurs.betreuerin;
+antwort = betreuerin.getAntwort();
+```
+
+- Was versteht der Kurs 01853 unter Metaprogrammierung?
+> Unter Metaprogrammierung versteht man die Fähigkeit eines Programmes (das Metaprogramm) ein anderes (oder sich selbst) zu beobachten oder sogar zu verändern. Metaprogrammierung ist rekursiv anwendbar, so dass auch Metaprogramme anderen Metaprogrammen unterliegen können.
+
+- Nenen Sie drei Beispiele für Metaprogramme aus unterschiedlichen Bereichen
+> - Programmierwerkzeuge wie Compiler, Interpreter, Debugger, Optimierer
+> - Programmanalysewerkzeuge wie Programme zur Erhebung von Metriken, Programme zur Findung von Fehlern und Sicherheitslücken
+> - Refactoring-Werkzeuge wie IDE
+
+- Beschreiben Sie ein *vollständig reflektives* System
+> Ein vollständig reflexives System ist in der Lage sich selbst, seine Struktur zu erkennen und seine Ausführung zu beobachten (Introspektion). Weiter kann es seine Ausführung ändern (Interzession oder Interzension) und auch den eigenen Code austauschen (Modifikation).
+
+- XP (e*X*treme *P*rogramming) ist ohne geeignete Werkzeuge nicht denkbar. Nennen Sie vier Werkzeuge und begründen Sie deren Wichtigkeit für XP.
+
+> Editoren mit Syntaxhervorhebung und automatischer Codeformatierung
+> Refactoring-Werkzeuge
+> Versionsverwaltung
+> Builder
