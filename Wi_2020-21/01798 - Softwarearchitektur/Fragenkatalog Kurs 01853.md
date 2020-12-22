@@ -204,3 +204,99 @@ class C {
   }
 }
 ```
+- Warum ist das Refactoring `Replace inheritance with delegation` hier nicht anwendbar?
+```java
+abstract class A {
+    public int i = 0;
+    public void f() {}
+    public abstract int g();
+}
+
+class B extends A {
+  public void f() {}
+  public int g() { return i;}
+}
+
+class C {
+  public static void f(A a) {
+    a.f();
+    a.g();
+  }
+}
+
+class D {
+  public void f() {
+    B b = new B();
+    C.f(b);
+  }
+}
+```
+> Da die Klasse `A` abstrakt ist, kann diese nicht instanziert und in der Folge auch nicht Teil einer Zuweisung sein, was die Umwandlung in eine Delegation sicher verhindert. In der Klasse `D` wird der Methode `C.f()` eine Instanz der Klasse `B` übergeben, auch das verhindert das Refactoring. Zuletzt greift `B.g()` auf `A.i` zu. Nach dem Refactoring wäre dieser Zugriff nicht mehr möglich.
+
+- Warum ist das Refactoring `Replace inheritance with delegation` hier nicht anwendbar?
+```java
+class A {
+  public void f() { g();}
+  public void g() {}
+}
+
+class B extends A {
+  public void f() {}
+  public void g() {}
+}
+```
+
+> Die Subklasse `B` wird durch `A` in offener Rekursion aufgerufen.
+
+- Wenden Sie das Refactoring *Replace Conditional with Polymorphism* auf das folgende Codebeispiel an, so dass für die Vogelarten *European*, *African* und *Norweigian_Blue* entsprechende Klassen bestehen.
+```java
+double getSpeed() {
+  switch(_type) {
+    case EUROPEAN:
+      return getBaseSpeed();
+    case AFRICAN:
+      return getBaseSpeed() - getLoadFactor() * _numberOfCoconuts;
+    case NORWEIGIAN_BLUE:
+      return (_isNailed) ? 0 : getBaseSpeed(_voltage);
+  }
+}
+```
+> Mit Interface
+
+```java
+interface Bird {
+  double getSpeed();
+}
+
+class European implements Bird {
+  double getSpeed() { return getBaseSpeed(); }
+}
+
+class African implements Bird {
+  double getSpeed() { getBaseSpeed() - getLoadFactor() * _numberOfCoconuts; }
+}
+
+class Norweigian_Blue implements Bird {
+  double getSpeed() { return (_isNailed) ? 0 : getBaseSpeed(_voltage); }
+}
+```
+
+> Mit Vererbung / Klasseninterface
+
+```java
+public abstract class Bird {
+  public abstract double getSpeed();
+}
+
+class European extends Bird {
+  double getSpeed() { return getBaseSpeed(); }
+}
+
+class African extends Bird {
+  double getSpeed() { getBaseSpeed() - getLoadFactor() * _numberOfCoconuts; }
+}
+
+class Norweigian_Blue extends Bird {
+  double getSpeed() { return (_isNailed) ? 0 : getBaseSpeed(_voltage); }
+}
+```
