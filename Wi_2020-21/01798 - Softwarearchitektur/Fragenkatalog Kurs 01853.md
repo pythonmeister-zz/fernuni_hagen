@@ -181,4 +181,26 @@ class C {
   }
 }
 ```
-> 
+> In der Klasse `C` wird einer Variablen des Typs `A` eine Instanz von `B` zugewiesen, was faktisch bedeutet, dass die Vererbung und das damit einhergehende Liskov'sche Substitutionsprinzip (LSP) explizit vorausgesetzt/genutzt wird. Die Aufhebung der Vererbung von `A` durch `B` würde diese Zuweisung unmöglich machen. Zusätzlich wird in der Klasse `B` die Methode `public int g()` aus der Klasse `A` überschrieben und darin auf die Variable `i` zugegriffen, die allerdings `protected` deklariert wurde und damit mit der Aufhebung der Vererbung nicht mehr zur Verfügung stünde. Beides verhindert eine (einfache) Umsetzung des Musters sicher und würde mehr Aufwand erfordern, da dann sowohl `B` als auch `C` geändert werden müssen:
+```java
+class A {
+  protected int i = 0;
+  public void f() {}
+  public int g() { return i;}
+}
+
+class B  {
+  protected int j = 0;
+  private A a = new A();
+  public void f() {}
+  public int g() { return a.g() + j;}
+}
+
+class C {
+  public void f() {
+    B b = new B();
+    b.f();
+    b.g();
+  }
+}
+```
