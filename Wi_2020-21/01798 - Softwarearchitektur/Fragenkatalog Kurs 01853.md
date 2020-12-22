@@ -335,7 +335,7 @@ antwort = betreuerin.getAntwort();
 
 - XP (e*X*treme *P*rogramming) ist ohne geeignete Werkzeuge nicht denkbar. Nennen Sie vier Werkzeuge und begründen Sie deren Wichtigkeit für XP.
 
-> Editoren mit Syntaxhervorhebung und automatischer Codeformatierung
-> Refactoring-Werkzeuge
-> Versionsverwaltung
-> Builder
+> Editoren mit Syntaxhervorhebung und automatischer Codeformatierung und Vervollständigung: in XP gibt es das Konzept der gemeinsamen Verantwortung, der Quellcode "gehört" nicht einem Entwickler. Das macht es erforderlich, auf Änderungen durch andere Entwickler schnell reagieren zu können, wobei eine automatische Vervollständigung sehr hilfreich ist. Die automatische Formatierung von Code hilft dabei, automatisiert dafür Sorge zu tragen, dass der Code visual einem gemeinsamen Standard entspricht, was ebenfalls die Einarbeitung und Übernahme des Codes vereinfacht. 
+> Refactoring-Werkzeuge: in XP sollen Änderungen "billig" sein, dass heißt schnell und einfach möglich sein. Durch den iterativen Ansatz ergeben sich regelmäßig Gelegenheiten den Code wieder lesbar/wartbar zu machen oder zu erhalten. Dazu benötigt man die Unterstützung von Werkzeugen, die das Refactoring mit guten Automatismen unterstützen.
+> Versionsverwaltung: die gemeinsame Verantwortung bedingt, dass jeder Entwickler jederzeit Zugriff auf den aktuellen Quelltext hat. Da sich immer auch Fehler einschleichen können und Refactorings häufig und gewünscht sind, ist es erforderlich alle Änderungen nachvollziehen zu können. Dazu ist eine Versionsverwaltungssystem unabdingbar.
+> Builder: Der Builder wird benötigt um regelmäßige Abläufe zu automatisieren und so die Entwickler zu entlasten. Häufige und schnelle Tests geben Rückmeldung zur Qualität der Umsetzung. Die Software kann automatisiert in Produktion gesetzt werden.
