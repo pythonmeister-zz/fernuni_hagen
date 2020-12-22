@@ -284,8 +284,8 @@ class Norweigian_Blue implements Bird {
 > Mit Vererbung / Klasseninterface
 
 ```java
-public abstract class Bird {
-  public abstract double getSpeed();
+abstract class Bird {
+  abstract double getSpeed();
 }
 
 class European extends Bird {
