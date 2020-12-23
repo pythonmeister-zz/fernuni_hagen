@@ -339,3 +339,22 @@ antwort = betreuerin.getAntwort();
 > Refactoring-Werkzeuge: in XP sollen Änderungen "billig" sein, dass heißt schnell und einfach möglich sein. Durch den iterativen Ansatz ergeben sich regelmäßig Gelegenheiten den Code wieder lesbar/wartbar zu machen oder zu erhalten. Dazu benötigt man die Unterstützung von Werkzeugen, die das Refactoring mit guten Automatismen unterstützen.
 > Versionsverwaltung: die gemeinsame Verantwortung bedingt, dass jeder Entwickler jederzeit Zugriff auf den aktuellen Quelltext hat. Da sich immer auch Fehler einschleichen können und Refactorings häufig und gewünscht sind, ist es erforderlich alle Änderungen nachvollziehen zu können. Dazu ist eine Versionsverwaltungssystem unabdingbar.
 > Builder: Der Builder wird benötigt um regelmäßige Abläufe zu automatisieren und so die Entwickler zu entlasten. Häufige und schnelle Tests geben Rückmeldung zur Qualität der Umsetzung. Die Software kann automatisiert in Produktion gesetzt werden.
+
+- Im Kurstext werden die folgenden Kategorien von Interfaces unterteilt:
+  - anbietendes Interface
+  - allgemeines Interface
+  - kontextspezifisches Interface
+  - ermöglichendes Interface
+  
+  Zu welcher oder welchen dieser Kategorien gehören
+  - Idiosynkratische Interfaces
+  - Familieninterfaces
+  - Client/Server-Interfaces
+  - Server/Client-Interfaces
+  - Server/Item-Interfaces
+
+- Beschreiben und vergleichen Sie idiosynkratisches und Familien-Interface
+> Beim idiosynkratischen Interface gibt es exakt eine Implementierung. In Java würde dies einem `interface` entsprechen einer `class`, die alle vom Interface veröffentlichten Methoden implementiert, was unüblich ist, da das Klasseninterface diese Eigenschaft schon besitzt. Ein Familien-Interface wird von mehr als einer konkreten Klasse implementiert (Beispiel: JDBC Driver) und üblicherweise im Zusammenhang mit dem Factory-Pattern oder Dependency Injection genutzt.
+
+
+
